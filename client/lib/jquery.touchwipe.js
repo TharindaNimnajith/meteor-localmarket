@@ -1,3 +1,5 @@
+// noinspection JSPotentiallyInvalidUsageOfThis
+
 /**
  * jQuery Plugin to obtain touch gestures from iPhone, iPod Touch and iPad, should also work with Android mobile phones (not tested yet!)
  * Common usage: wipe images (left and right to show the previous or next image)
@@ -9,7 +11,7 @@
  */
 (function ($) {
   $.fn.touchwipe = function (settings) {
-    var config = {
+    const config = {
       min_move_x: 20,
       min_move_y: 20,
       wipeLeft: function () {
@@ -26,9 +28,9 @@
     if (settings) $.extend(config, settings);
 
     this.each(function () {
-      var startX;
-      var startY;
-      var isMoving = false;
+      let startX;
+      let startY;
+      let isMoving = false;
 
       function cancelTouch() {
         this.removeEventListener('touchmove', onTouchMove);
@@ -41,10 +43,10 @@
           e.preventDefault();
         }
         if (isMoving) {
-          var x = e.touches[0].pageX;
-          var y = e.touches[0].pageY;
-          var dx = startX - x;
-          var dy = startY - y;
+          const x = e.touches[0].pageX;
+          const y = e.touches[0].pageY;
+          const dx = startX - x;
+          const dy = startY - y;
           if (Math.abs(dx) >= config.min_move_x) {
             cancelTouch();
             if (dx > 0) {
@@ -64,7 +66,7 @@
       }
 
       function onTouchStart(e) {
-        if (e.touches.length == 1) {
+        if (e.touches.length === 1) {
           startX = e.touches[0].pageX;
           startY = e.touches[0].pageY;
           isMoving = true;
