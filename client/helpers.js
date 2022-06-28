@@ -1,4 +1,4 @@
-pluralize = function(n, thing, options) {
+pluralize = function (n, thing, options) {
   var plural = thing;
   if (_.isUndefined(n)) {
     return thing;
@@ -23,14 +23,14 @@ var DIMENSIONS = {
   full: '640x800'
 };
 
-UI.registerHelper('recipeImage', function(options) {
+UI.registerHelper('recipeImage', function (options) {
   var size = options.hash.size || 'large';
 
   if (options.hash.recipe)
     return '/img/recipes/' + DIMENSIONS[size] + '/' + options.hash.recipe.name + '.jpg';
 });
 
-Handlebars.registerHelper('activePage', function() {
+Handlebars.registerHelper('activePage', function () {
   // includes Spacebars.kw but that's OK because the route name ain't that.
   var routeNames = arguments;
 

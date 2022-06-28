@@ -7,7 +7,9 @@
 
   // Show & hide message on web/desktop
   display: none;
-  @media screen and (min-width: 60em) { display: block; }
+  @media screen and (min-width: 60em) {
+    display: block;
+  }
 
   .title-welcome {
     .font-s3;
@@ -22,14 +24,21 @@
     .font-s2;
     color: @color-well;
 
-    & + .description-welcome { margin-top: .5rem; }
+    & + .description-welcome {
+      margin-top: .5rem;
+    }
 
     a {
       .type-bold;
       color: @color-medium-well;
 
-      &:hover { color: darken(@color-well, 10%); }
-      &:active { color: @color-well; }
+      &:hover {
+        color: darken(@color-well, 10%);
+      }
+
+      &:active {
+        color: @color-well;
+      }
     }
   }
 }

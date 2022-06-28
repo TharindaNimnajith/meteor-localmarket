@@ -1,4 +1,4 @@
-Template.activity.onRendered(function() {
+Template.activity.onRendered(function () {
   var self = this;
 
   // If the activity is in a list, scroll it into view. Note, we can't just use
@@ -14,14 +14,14 @@ Template.activity.onRendered(function() {
 });
 
 Template.activity.helpers({
-  firstName: function() {
+  firstName: function () {
     return this.userName.split(' ')[0];
   },
-  recipeTitle: function() {
+  recipeTitle: function () {
     return RecipesData[this.recipeName].title;
   },
-  path: function() {
-    return Router.path('recipe', { name: this.recipeName },
-      { query: { activityId: this._id } })
+  path: function () {
+    return Router.path('recipe', {name: this.recipeName},
+      {query: {activityId: this._id}})
   }
 })

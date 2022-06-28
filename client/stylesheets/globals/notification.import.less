@@ -1,10 +1,19 @@
 @-webkit-keyframes spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(359deg)); }
+  0% {
+    .transform(rotate(0deg));
+  }
+  100% {
+    .transform(rotate(359deg));
+  }
 }
+
 @keyframes spin {
-  0% { .transform(rotate(0deg)); }
-  100% { .transform(rotate(359deg)); }
+  0% {
+    .transform(rotate(0deg));
+  }
+  100% {
+    .transform(rotate(359deg));
+  }
 }
 
 
@@ -15,16 +24,16 @@
 
   .notification {
     .font-s2;
-    background: rgba(51,51,51, .95);
+    background: rgba(51, 51, 51, .95);
     color: @color-empty;
     position: relative;
     width: 100%;
 
     &:nth-child(odd) {
-      background: rgba(45,45,45, .95);
+      background: rgba(45, 45, 45, .95);
 
       .btn-primary {
-        background: rgba(216,62,20, .78); // This is color-primary in rgba form
+        background: rgba(216, 62, 20, .78); // This is color-primary in rgba form
       }
     }
 
@@ -49,7 +58,7 @@
 
     .btn-primary {
       float: right;
-      background: rgba(216,62,20, .85); // This is color-primary in rgba form
+      background: rgba(216, 62, 20, .85); // This is color-primary in rgba form
       height: 48px;
     }
   }

@@ -4,15 +4,15 @@
 //
 // We have to use an autorun for this as callbacks get lost in the
 //   redirect flow.
-Template.authOverlay.onCreated(function() {
-  this.autorun(function() {
+Template.authOverlay.onCreated(function () {
+  this.autorun(function () {
     if (Meteor.userId() && Overlay.template() === 'authOverlay')
       Overlay.close();
   });
 });
 
 Template.authOverlay.events({
-  'click .js-signin': function() {
+  'click .js-signin': function () {
     Meteor.loginWithTwitter({loginStyle: 'redirect'});
   }
 });

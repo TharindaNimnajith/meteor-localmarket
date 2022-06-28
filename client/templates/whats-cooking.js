@@ -1,8 +1,8 @@
 Template.feed.helpers({
-  activities: function() {
+  activities: function () {
     return Activities.find({}, {sort: {date: -1}});
   },
-  ready: function() {
+  ready: function () {
     return Router.current().feedSubscription.ready();
   }
 })

@@ -4,11 +4,13 @@
   overflow: auto;
   position: relative;
 
-  .wrapper-message { top: 50%; }
+  .wrapper-message {
+    top: 50%;
+  }
 }
 
 .item-activity {
-  .transform(translate3d(0,0,0));
+  .transform(translate3d(0, 0, 0));
   background: @color-empty;
   border-top: 1px solid @color-rare;
   display: block;
@@ -39,14 +41,18 @@
       display: block;
     }
 
-    .author { .type-black; }
+    .author {
+      .type-black;
+    }
 
     .recipe {
       .type-bold;
       color: @color-primary;
     }
 
-    .location { color: @color-medium-rare; }
+    .location {
+      color: @color-medium-rare;
+    }
   }
 
   .bg-image {

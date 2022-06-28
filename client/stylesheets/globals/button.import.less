@@ -8,7 +8,7 @@
   // Style
   .type-black;
   .title-caps;
-  .transition( all 200ms ease-in );
+  .transition(all 200ms ease-in);
   color: @color-empty;
   display: inline-block;
   position: relative;
@@ -25,42 +25,66 @@
     background-color: @color-primary;
     color: @color-empty;
 
-    &:hover { background-color: darken(@color-primary, 5%); }
-    &:active { box-shadow: rgba(0,0,0,.3) 0 1px 3px 0 inset; }
+    &:hover {
+      background-color: darken(@color-primary, 5%);
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, .3) 0 1px 3px 0 inset;
+    }
   }
 
   &[class*="secondary"] {
     background: @color-tertiary;
-    color: rgba(255,255,255,.4);
+    color: rgba(255, 255, 255, .4);
 
-    &:hover { background-color: darken(@color-tertiary, 5%); }
-    &:active { box-shadow: rgba(0,0,0,.3) 0 1px 3px 0 inset; }
+    &:hover {
+      background-color: darken(@color-tertiary, 5%);
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, .3) 0 1px 3px 0 inset;
+    }
 
     &.active,
     &.no-state:first-child {
       background: @color-secondary;
       color: @color-empty;
 
-      &:hover{ background-color: darken(@color-secondary, 5%); }
-      &:active{ box-shadow: rgba(0,0,0,.3) 0 1px 3px 0 inset; }
+      &:hover {
+        background-color: darken(@color-secondary, 5%);
+      }
+
+      &:active {
+        box-shadow: rgba(0, 0, 0, .3) 0 1px 3px 0 inset;
+      }
     }
 
-    &.no-state { color: @color-empty; }
+    &.no-state {
+      color: @color-empty;
+    }
   }
 
   &[class*="tertiary"] {
     background: @color-raw;
     color: @color-primary;
 
-    &:hover { background-color: @color-raw; }
+    &:hover {
+      background-color: @color-raw;
+    }
   }
 
   &[class*="twitter"] {
     background-color: @color-twitter;
     color: @color-empty;
 
-    &:hover { background-color: darken(@color-twitter, 10%); }
-    &:active { box-shadow: rgba(0,0,0,.3) 0 1px 3px 0 inset; }
+    &:hover {
+      background-color: darken(@color-twitter, 10%);
+    }
+
+    &:active {
+      box-shadow: rgba(0, 0, 0, .3) 0 1px 3px 0 inset;
+    }
   }
 
   &[class*="camera"] {
@@ -75,8 +99,8 @@
 
     .icon-camera {
       @dimension-camera: 3.5rem;
-      .position(absolute, 50%, 50%, auto, auto, @dimension-camera, @dimension-camera );
-      .transform(translate3d(50%, -50%,0));
+      .position(absolute, 50%, 50%, auto, auto, @dimension-camera, @dimension-camera);
+      .transform(translate3d(50%, -50%, 0));
       background-color: @color-primary;
       border-radius: 10em;
       color: @color-empty;
@@ -86,16 +110,24 @@
 
     &:hover {
       box-shadow: darken(@color-primary, 3%) 0 0 0px 2px inset;
-      .icon-camera { background-color: darken(@color-primary, 3%); }
+
+      .icon-camera {
+        background-color: darken(@color-primary, 3%);
+      }
     }
 
     &:active {
       box-shadow: darken(@color-primary, 3%) 0 0 0px 2px inset;
-      .icon-camera { background-color: darken(@color-primary, 3%); }
+
+      .icon-camera {
+        background-color: darken(@color-primary, 3%);
+      }
     }
   }
 
-  &[disabled] { opacity: .5; }
+  &[disabled] {
+    opacity: .5;
+  }
 }
 
 .btns-group {

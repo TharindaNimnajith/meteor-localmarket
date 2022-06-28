@@ -9,25 +9,25 @@ Session.setDefault(MENU_KEY, false);
 
 // XXX: this work around until IR properly supports this
 //   IR refactor will include Location.back, which will ensure that initator is
-//   set 
+//   set
 var nextInitiator = null, initiator = null;
-Deps.autorun(function() {
+Deps.autorun(function () {
   // add a dep
   Router.current();
-  
+
   initiator = nextInitiator;
   nextInitiator = null;
 });
 
 var notifications = new Mongo.Collection(null);
 
-Template.appBody.addNotification = function(notification) {
+Template.appBody.addNotification = function (notification) {
   var id = notifications.insert(notification);
 
-  Meteor.setTimeout(function() {
+  Meteor.setTimeout(function () {
     notifications.remove(id);
   }, NOTIFICATION_TIMEOUT);
-} 
+}
 
 Meteor.startup(function () {
   // set up a swipe left / right handler
@@ -52,9 +52,9 @@ Meteor.startup(function () {
   }, CONNECTION_ISSUE_TIMEOUT);
 });
 
-Template.appBody.onRendered(function() {
+Template.appBody.onRendered(function () {
   this.find("#content-container")._uihooks = {
-    insertElement: function(node, next) {
+    insertElement: function (node, next) {
       // short-circuit and just do it right away
       if (initiator === 'menu')
         return $(node).insertBefore(next);
@@ -63,89 +63,89 @@ Template.appBody.onRendered(function() {
 
       $.Velocity.hook(node, 'translateX', start);
       $(node)
-      .insertBefore(next)
-      .velocity({translateX: [0, start]}, {
-        duration: ANIMATION_DURATION,
-        easing: 'ease-in-out',
-        queue: false
-      });
+        .insertBefore(next)
+        .velocity({translateX: [0, start]}, {
+          duration: ANIMATION_DURATION,
+          easing: 'ease-in-out',
+          queue: false
+        });
     },
-    removeElement: function(node) {
+    removeElement: function (node) {
       if (initiator === 'menu')
         return $(node).remove();
 
       var end = (initiator === 'back') ? '100%' : '-100%';
 
       $(node)
-      .velocity({translateX: end}, {
-        duration: ANIMATION_DURATION,
-        easing: 'ease-in-out',
-        queue: false,
-        complete: function() {
-          $(node).remove();
-        }
-      });
+        .velocity({translateX: end}, {
+          duration: ANIMATION_DURATION,
+          easing: 'ease-in-out',
+          queue: false,
+          complete: function () {
+            $(node).remove();
+          }
+        });
     }
   };
 
   this.find(".notifications")._uihooks = {
-    insertElement: function(node, next) {
+    insertElement: function (node, next) {
       $(node)
-      .insertBefore(next)
-      .velocity("slideDown", { 
-        duration: ANIMATION_DURATION, 
-        easing: [0.175, 0.885, 0.335, 1.05]
-      });
+        .insertBefore(next)
+        .velocity("slideDown", {
+          duration: ANIMATION_DURATION,
+          easing: [0.175, 0.885, 0.335, 1.05]
+        });
     },
-    removeElement: function(node) {
+    removeElement: function (node) {
       $(node)
-      .velocity("fadeOut", {
-        duration: ANIMATION_DURATION,
-        complete: function() {
-          $(node).remove();
-        }
-      });
+        .velocity("fadeOut", {
+          duration: ANIMATION_DURATION,
+          complete: function () {
+            $(node).remove();
+          }
+        });
     }
   };
 });
 
 
 Template.appBody.helpers({
-  menuOpen: function() {
+  menuOpen: function () {
     return Session.get(MENU_KEY) && 'menu-open';
   },
-  
-  overlayOpen: function() {
+
+  overlayOpen: function () {
     return Overlay.isOpen() ? 'overlay-open' : '';
   },
-  
-  connected: function() {
+
+  connected: function () {
     return Session.get(IGNORE_CONNECTION_ISSUE_KEY) ||
       Meteor.status().connected;
   },
-  
-  notifications: function() {
+
+  notifications: function () {
     return notifications.find();
   }
 });
 
 Template.appBody.events({
-  'click .js-menu': function(event) {
+  'click .js-menu': function (event) {
     event.stopImmediatePropagation();
     event.preventDefault();
-    Session.set(MENU_KEY, ! Session.get(MENU_KEY));
+    Session.set(MENU_KEY, !Session.get(MENU_KEY));
   },
 
-  'click .js-back': function(event) {
+  'click .js-back': function (event) {
     nextInitiator = 'back';
-    
+
     // XXX: set the back transition via Location.back() when IR 1.0 hits
     history.back();
     event.stopImmediatePropagation();
     event.preventDefault();
   },
-  
-  'click a.js-open': function(event) {
+
+  'click a.js-open': function (event) {
     // On Cordova, open links in the system browser rather than In-App
     if (Meteor.isCordova) {
       event.preventDefault();
@@ -153,17 +153,17 @@ Template.appBody.events({
     }
   },
 
-  'click .content-overlay': function(event) {
+  'click .content-overlay': function (event) {
     Session.set(MENU_KEY, false);
     event.preventDefault();
   },
 
-  'click #menu a': function(event) {
+  'click #menu a': function (event) {
     nextInitiator = 'menu'
     Session.set(MENU_KEY, false);
   },
-  
-  'click .js-notification-action': function() {
+
+  'click .js-notification-action': function () {
     if (_.isFunction(this.callback)) {
       this.callback();
       notifications.remove(this._id);
