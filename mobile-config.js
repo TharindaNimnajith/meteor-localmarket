@@ -1,3 +1,5 @@
+// noinspection HttpUrlsUsage
+
 App.info({
   name: 'Local Market',
   description: 'A recipe sharing app made in Meteor.',
